@@ -7,14 +7,17 @@
 describe_num(df)
 }
 \arguments{
-\item{dataframe}{data.frame}
+\item{df}{data.frame}
 }
 \value{
 data.frame of descriptive statistics
 }
 \description{
 Descriptive statistics like missing data ratio, median, 
-skewness and others of numeric columns of passed data frame.
+skewness and others of numeric (\emph{integer}, \emph{double}, \emph{numeric}
+) columns of input data frame. All character, factor and logical columns
+are dropped; for these column descriptive statistics function 
+\code{describe_char()} has been developed.
 }
 \examples{
 describe_num(iris)

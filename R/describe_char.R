@@ -1,9 +1,12 @@
 #' @title Describe nominal columns
 #' 
 #' @description  Descriptive statistics like missing value ratio and mode for 
-#' character and factor columns. s
-#' @param dataframe data.frame 
+#' character (\emph{factor}, \emph{character}, \emph{logical}) columns. All 
+#' numeric columns are dropped; for these column descriptive statistics function 
+#' \code{describe_num()} has been developed.
+#' @param df data.frame 
 #' @return data.frame of descriptive statistics
+#' @usage describe_char(df)
 #' @import dplyr
 #' @importFrom data.table rbindlist setDT .SD transpose
 #' @importFrom tibble rownames_to_column
@@ -14,14 +17,17 @@
 describe_char <- function(df){
   # find all character and factor columns in df
   char_columns <- df %>%
-    dplyr::select_if(function(col) {is.factor(col) || is.character(col)}) %>%
+    dplyr::select_if(function(col) {is.factor(col) || 
+                                    is.character(col) ||
+                                    is.logical(col)}) %>%
     base::names()
   
   if(length(char_columns)>0){
-    # Select only numerical columns of data frame
+    # Select only char, factor and logical columns of data frame
     df_char <- df %>%
       dplyr::select(dplyr::one_of(char_columns)) %>%
-      dplyr::mutate_if(is.factor, as.character)
+      dplyr::mutate_if(is.factor, as.character) %>%
+      dplyr::mutate_if(is.logical, as.character)
     
     # convert data frame to data table
     data.table::setDT(df_char)

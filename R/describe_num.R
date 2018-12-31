@@ -1,10 +1,13 @@
 #' @title Describe numeric columns
 #' 
 #' @description  Descriptive statistics like missing data ratio, median, 
-#' skewness and others of numeric columns of passed data frame.
-#'
-#' @param dataframe data.frame 
+#' skewness and others of numeric (\emph{integer}, \emph{double}, \emph{numeric}
+#' ) columns of input data frame. All character, factor and logical columns
+#' are dropped; for these column descriptive statistics function 
+#' \code{describe_char()} has been developed.
+#' @param df data.frame 
 #' @return data.frame of descriptive statistics
+#' @usage describe_num(df)
 #' @import dplyr
 #' @importFrom data.table rbindlist setDT .SD transpose
 #' @importFrom moments skewness kurtosis
@@ -16,7 +19,10 @@
 describe_num <- function(df){
   # find all numeric columns in df
   num_columns <- df %>%
-    dplyr::select_if(is.numeric) %>%
+    dplyr::select_if(function(col) {is.numeric(col) || 
+                                    is.integer(col) ||
+                                    is.double(col)
+                                    }) %>%
     base::names()
   
   if(length(num_columns)>0){

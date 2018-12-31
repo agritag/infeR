@@ -7,14 +7,16 @@
 describe_char(df)
 }
 \arguments{
-\item{dataframe}{data.frame}
+\item{df}{data.frame}
 }
 \value{
 data.frame of descriptive statistics
 }
 \description{
 Descriptive statistics like missing value ratio and mode for 
-character and factor columns. s
+character (\emph{factor}, \emph{character}, \emph{logical}) columns. All 
+numeric columns are dropped; for these column descriptive statistics function 
+\code{describe_num()} has been developed.
 }
 \examples{
 describe_char(iris)

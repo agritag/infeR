@@ -2,8 +2,11 @@ require(infeR)
 context("test-read_data")
 
 test_that("Read in DESCRIPTION file", {
+  
+  url <- "https://raw.githubusercontent.com/agritag/infeR/master/DESCRIPTION"
+  
   # Seperator is `: ` 
-  df <- read_data("../../DESCRIPTION", sep=": ", header=FALSE)
+  df <- read_data(url, sep=": ", header=FALSE)
   
   # Test
   testthat::expect_equal({df[1,] %>% as.data.frame()},
@@ -11,7 +14,7 @@ test_that("Read in DESCRIPTION file", {
                                     stringsAsFactors = FALSE)
                          )
   ## Expect warning due to last line of description file
-  testthat::expect_warning(read_data("../../DESCRIPTION", sep=": ", 
+  testthat::expect_warning(read_data(url, sep=": ", 
                                      header=FALSE)
                            )
 })

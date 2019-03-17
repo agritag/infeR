@@ -30,7 +30,5 @@ functions.
 #MovieTweetings dataset from sidooms github project 
 df <- read_data(filepath=paste0("https://raw.githubusercontent.com/sidooms/",
                                 "MovieTweetings/master/latest/movies.dat"),
-          sep="::", sbyte_sep = "~", header=FALSE) \%>\%
-          #add title for printing
-          dplyr::rename(movie_id = V1, title = V2, genre = V3)
+          sep="::", sbyte_sep = "~", header=FALSE) 
 }

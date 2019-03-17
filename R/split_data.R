@@ -73,23 +73,13 @@ split_data <- function(df, target_column, ratio=c(0.5, 0.5), replace = FALSE){
 
 #' @title Validate data frame before splitting
 #' 
-#' @description 
-#' 
 #' @param df data.frame 
 #' @param target_column string; name of the column which is assumed as target
 #' column. \code{df} must contain this column.
-#' @param n integer;
+#' @param n integer specifying how many sets should be created. 
 #' @usage split_data_validation(df = df, target_column = "target_col", n=10)
 #' @import dplyr
-#' @examples 
-#' df <- data.frame(column1 = rep(TRUE,50),
-#'                  column2 = LETTERS[1:50],
-#'                  column3 = seq(1,50),
-#'                  column4 = c(rep("a",45), rep("b",5)),
-#'                  column5 = seq(1,50,by=1),
-#'                  target_col = c(rep("A",25), rep("B", 25)),
-#'                  stringsAsFactors = FALSE)
-#' split_data_validation(df, target_column = "target_col", n=10)
+#' @seealso \code{\link{split_data}} for splitting data set into \emph{n} parts.
 
 split_data_validation <- function(df, target_column, n){
   # data.frame dimension validation

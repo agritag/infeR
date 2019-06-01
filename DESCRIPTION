@@ -11,4 +11,4 @@ LazyData: true
 RoxygenNote: 6.1.1
 Imports: dplyr, data.table, moments, tibble
 Suggests: 
-    testthat
+    testthat (>= 2.1.0)
